@@ -2,8 +2,8 @@ import { Badge } from '@/shared/Badge'
 import ButtonPrimary from '@/shared/ButtonPrimary'
 import ButtonSecondary from '@/shared/ButtonSecondary'
 import { Divider } from '@/shared/divider'
-import { Heading } from '@/shared/Heading'
-import { WifiIcon, GlobeIcon, CheckCircleIcon, QrCodeIcon } from '@heroicons/react/24/outline'
+import Heading from '@/shared/Heading'
+import { WifiIcon, GlobeIcon, CheckCircleIcon, CameraIcon } from '@heroicons/react/24/outline'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -122,7 +122,7 @@ const PageEsim = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <ButtonPrimary href={AIRALO_APP_LINK} target="_blank" rel="noopener noreferrer">
-                  <QrCodeIcon className="h-5 w-5 mr-2" />
+                  <CameraIcon className="h-5 w-5 mr-2" />
                   Download App
                 </ButtonPrimary>
                 <ButtonSecondary href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
