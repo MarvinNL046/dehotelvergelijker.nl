@@ -27,81 +27,20 @@ export async function getNavigation(): Promise<TNavigationItem[]> {
     },
     {
       id: '6',
-      href: '/',
-      name: 'Meer',
-      type: 'mega-menu',
-      children: [
-        {
-          id: '1',
-          href: '#',
-          name: 'Homepagina\'s',
-          children: [
-            {
-              id: '1-1',
-              href: '/',
-              name: 'Hotels',
-            },
-            {
-              id: '1-2',
-              href: '/real-estate',
-              name: 'Vastgoed',
-            },
-            { id: '1-3', href: '/experience', name: 'Ervaringen' },
-            { id: '1-4', href: '/car', name: 'Auto\'s' },
-            { id: '1-5', href: '/flight-categories/all', name: 'Vluchten' },
-            { id: '1-6', href: '/home-2', name: 'Home 2' },
-          ],
-        },
-        {
-          id: '2',
-          href: '#',
-          name: 'Categorieën',
-          children: [
-            { id: '2-1', href: '/stay-categories/all', name: 'Hotel Categorieën' },
-            { id: '2-4', href: '/car-categories/all', name: 'Auto Categorieën' },
-            { id: '2-2', href: '/real-estate-categories/all', name: 'Vastgoed Categorieën' },
-            { id: '2-3', href: '/experience-categories/all', name: 'Ervaring Categorieën' },
-            { id: '2-5', href: '/flight-categories/all', name: 'Vlucht Categorieën' },
-            { id: '2-6', href: '/stay-categories-map/all', name: 'Toon Kaart' },
-          ],
-        },
-        {
-          id: '3',
-          href: '#',
-          name: 'Detail Pagina\'s',
-          children: [
-            { id: '3-1', href: '/stay-listings/handle-123', name: 'Hotel detail' },
-            { id: '3-2', href: '/car-listings/handle-123', name: 'Auto detail' },
-            { id: '3-3', href: '/experience-listings/handle-123', name: 'Ervaring detail' },
-            { id: '3-4', href: '/real-estate-listings/handle-123', name: 'Vastgoed detail' },
-          ],
-        },
-        {
-          id: '4',
-          href: '/#',
-          name: 'Overige Pagina\'s',
-          type: 'dropdown',
-          children: [
-            { id: '4-1', href: '/authors/truelock-alric', name: 'Auteur' },
-            { id: '4-2', href: '/blog', name: 'Blog' },
-            { id: '4-3', href: '/checkout', name: 'Afrekenen' },
-            { id: '4-5', href: '/contact', name: 'Contact' },
-            { id: '4-6', href: '/login', name: 'Inloggen/Registreren' },
-            { id: '4-7', href: '/add-listing/1', name: '+ Advertentie toevoegen' },
-            { id: '4-8', href: '/account', name: 'Account' },
-          ],
-        },
-      ],
+      href: '/blog',
+      name: 'Blog',
+    },
+    {
+      id: '7',
+      href: '/contact',
+      name: 'Contact',
     },
   ]
 }
 
 export async function getNavMegaMenu(): Promise<TNavigationItem> {
-  const navigation = await getNavigation()
-
-  // Find the mega menu item in the navigation array
-  // for demo purposes, we assume the mega menu is the one with name 'Meer'
-  return navigation.find((item) => item.type === 'mega-menu' && item.name === 'Meer') || {}
+  // Return empty object since we no longer have a mega menu
+  return {}
 }
 
 // ============ TYPE =============
