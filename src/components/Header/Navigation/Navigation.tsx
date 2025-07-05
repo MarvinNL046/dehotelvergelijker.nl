@@ -1,15 +1,23 @@
+'use client'
+
 import CardCategory7 from '@/components/CardCategory7'
 import { TCategory } from '@/data/categories'
 import { TNavigationItem } from '@/data/navigation'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { FC } from 'react'
 
-const Lv1MenuItem = ({ menuItem }: { menuItem: TNavigationItem }) => {
+const Lv1MenuItem = ({ menuItem, isActive }: { menuItem: TNavigationItem; isActive?: boolean }) => {
   return (
     <Link
-      className="flex items-center self-center rounded-full px-4 py-2.5 text-sm font-medium whitespace-nowrap text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 lg:text-[15px] xl:px-5 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
+      className={clsx(
+        "flex items-center self-center rounded-full px-4 py-2.5 text-sm font-medium whitespace-nowrap lg:text-[15px] xl:px-5",
+        isActive 
+          ? "bg-primary-100 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400" 
+          : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
+      )}
       href={menuItem.href || '#'}
     >
       {menuItem.name}
@@ -20,7 +28,7 @@ const Lv1MenuItem = ({ menuItem }: { menuItem: TNavigationItem }) => {
   )
 }
 
-const MegaMenu = ({ menuItem, category }: { menuItem: TNavigationItem; category: TCategory }) => {
+const MegaMenu = ({ menuItem, category, isActive }: { menuItem: TNavigationItem; category: TCategory; isActive?: boolean }) => {
   const renderNavlink = (item: TNavigationItem) => {
     return (
       <li key={item.id} className={clsx('menu-item', item.isNew && 'menuIsNew')}>
@@ -36,7 +44,7 @@ const MegaMenu = ({ menuItem, category }: { menuItem: TNavigationItem; category:
 
   return (
     <li className="menu-megamenu menu-item">
-      <Lv1MenuItem menuItem={menuItem} />
+      <Lv1MenuItem menuItem={menuItem} isActive={isActive} />
 
       {menuItem.children?.length && menuItem.type === 'mega-menu' ? (
         <div className="absolute inset-x-0 top-full z-10 sub-menu">
@@ -63,7 +71,7 @@ const MegaMenu = ({ menuItem, category }: { menuItem: TNavigationItem; category:
   )
 }
 
-const DropdownMenu = ({ menuItem }: { menuItem: TNavigationItem }) => {
+const DropdownMenu = ({ menuItem, isActive }: { menuItem: TNavigationItem; isActive?: boolean }) => {
   const renderMenuLink = (menuItem: TNavigationItem) => {
     return (
       <Link
@@ -102,7 +110,7 @@ const DropdownMenu = ({ menuItem }: { menuItem: TNavigationItem }) => {
 
   return (
     <li className="menu-dropdown relative menu-item">
-      <Lv1MenuItem menuItem={menuItem} />
+      <Lv1MenuItem menuItem={menuItem} isActive={isActive} />
 
       {menuItem.children?.length && menuItem.type === 'dropdown' ? (
         <div className="absolute top-full left-0 z-10 sub-menu w-56">
@@ -130,18 +138,34 @@ export interface Props {
   featuredCategory: TCategory
 }
 const Navigation: FC<Props> = ({ menu, className, featuredCategory }) => {
+  const pathname = usePathname()
+  
+  const isItemActive = (href: string | undefined) => {
+    if (!href) return false
+    
+    // Exact match for home page
+    if (href === '/' && pathname === '/') return true
+    
+    // For other pages, check if pathname starts with href (but not for home)
+    if (href !== '/' && pathname.startsWith(href)) return true
+    
+    return false
+  }
+  
   return (
     <ul className={clsx('flex', className)}>
       {menu.map((menuItem) => {
+        const isActive = isItemActive(menuItem.href)
+        
         if (menuItem.type === 'dropdown') {
-          return <DropdownMenu key={menuItem.id} menuItem={menuItem} />
+          return <DropdownMenu key={menuItem.id} menuItem={menuItem} isActive={isActive} />
         }
         if (menuItem.type === 'mega-menu') {
-          return <MegaMenu category={featuredCategory} key={menuItem.id} menuItem={menuItem} />
+          return <MegaMenu category={featuredCategory} key={menuItem.id} menuItem={menuItem} isActive={isActive} />
         }
         return (
           <li key={menuItem.id} className="relative menu-item">
-            <Lv1MenuItem key={menuItem.id} menuItem={menuItem} />
+            <Lv1MenuItem menuItem={menuItem} isActive={isActive} />
           </li>
         )
       })}
