@@ -16,7 +16,7 @@ import {
 import { HugeiconsIcon, IconSvgElement } from '@hugeicons/react'
 import clsx from 'clsx'
 import _ from 'lodash'
-import { FC, useCallback, useEffect, useRef, useState } from 'react'
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ClearDataButton } from './ClearDataButton'
 
 type Suggest = {
@@ -138,24 +138,30 @@ export const LocationInputField: FC<Props> = ({
   //  a custom hook that listens for clicks outside the container
   useInteractOutside(containerRef, closePopover)
 
-  const handleInputChange = useCallback(
-    _.debounce((e: React.ChangeEvent<HTMLInputElement>) => {
-      setShowPopover(true)
-      // If the input is empty, Combobox will automatically setSelected
-      if (e.target.value) {
+  // Create debounced function using useMemo to avoid ESLint warning
+  const debouncedSetSelected = useMemo(
+    () => _.debounce((value: string) => {
+      if (value) {
         setSelected({
           id: Date.now().toString(), // Generate a unique id for the selected item
-          name: e.target.value,
+          name: value,
         })
       }
     }, 300),
     []
   )
+
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setShowPopover(true)
+    // If the input is empty, Combobox will automatically setSelected
+    debouncedSetSelected(e.target.value)
+  }, [debouncedSetSelected])
+
   useEffect(() => {
     return () => {
-      handleInputChange.cancel() // Hủy debounce khi component unmount
+      debouncedSetSelected.cancel() // Cancel debounce when component unmounts
     }
-  }, [handleInputChange])
+  }, [debouncedSetSelected])
 
   const isShowInitSuggests = !selected?.id
   const suggestsToShow = isShowInitSuggests ? initSuggests : searchingSuggests

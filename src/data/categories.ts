@@ -483,8 +483,8 @@ export async function getRealEstateCategoryByHandle(handle?: string) {
         'https://images.pexels.com/photos/64271/queen-of-liberty-statue-of-liberty-new-york-liberty-statue-64271.jpeg',
       coverImage: {
         src: realEstateCategoryCoverImage.src,
-        width: realEstateCoverImage.width,
-        height: realEstateCoverImage.height,
+        width: realEstateCategoryCoverImage.width,
+        height: realEstateCategoryCoverImage.height,
       },
       region: 'Wereldwijd',
       description: 'Ontdek al het vastgoed wereldwijd',
