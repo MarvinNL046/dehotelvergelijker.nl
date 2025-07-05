@@ -160,6 +160,7 @@ const PageEsim = () => {
         </div>
       </div>
 
+
       <Divider />
 
       {/* How it Works */}
