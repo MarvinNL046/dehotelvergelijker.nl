@@ -26,12 +26,12 @@ import FlightSearchFormMobile from './flight-search-form/FlightSearchFormMobile'
 import RealestateSearchFormMobile from './real-estate-search-form/RealestateSearchFormMobile'
 import StaySearchFormMobile from './stay-search-form/StaySearchFormMobile'
 
-const formTabs: { name: ListingType; icon: IconSvgElement; formComponent: React.ComponentType<{}> }[] = [
-  { name: 'Stays', icon: House03Icon, formComponent: StaySearchFormMobile },
-  { name: 'Cars', icon: Car05Icon, formComponent: CarSearchFormMobile },
-  { name: 'Experiences', icon: HotAirBalloonFreeIcons, formComponent: ExperienceSearchFormMobile },
-  { name: 'RealEstates', icon: RealEstate02Icon, formComponent: RealestateSearchFormMobile },
-  { name: 'Flights', icon: Airplane02Icon, formComponent: FlightSearchFormMobile },
+const formTabs: { name: ListingType; displayName: string; icon: IconSvgElement; formComponent: React.ComponentType<{}> }[] = [
+  { name: 'Stays', displayName: 'Hotels', icon: House03Icon, formComponent: StaySearchFormMobile },
+  { name: 'Cars', displayName: 'Auto\'s', icon: Car05Icon, formComponent: CarSearchFormMobile },
+  { name: 'Experiences', displayName: 'Ervaringen', icon: HotAirBalloonFreeIcons, formComponent: ExperienceSearchFormMobile },
+  { name: 'RealEstates', displayName: 'Vastgoed', icon: RealEstate02Icon, formComponent: RealestateSearchFormMobile },
+  { name: 'Flights', displayName: 'Vluchten', icon: Airplane02Icon, formComponent: FlightSearchFormMobile },
 ]
 
 const HeroSearchFormMobile = ({ className }: { className?: string }) => {
@@ -99,7 +99,7 @@ const HeroSearchFormMobile = ({ className }: { className?: string }) => {
                           )}
                         >
                           <div className="relative">
-                            <span className="sr-only">{tab.name}</span>
+                            <span className="sr-only">{tab.displayName}</span>
                             <HugeiconsIcon icon={tab.icon} size={26} />
                             <span className="absolute top-full mt-1 hidden h-0.5 w-full bg-neutral-800 group-data-selected:block dark:bg-neutral-100" />
                           </div>
