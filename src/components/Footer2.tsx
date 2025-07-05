@@ -14,27 +14,27 @@ const navigation: {
   }[]
 } = {
   solutions: [
-    { name: 'Marketing', href: '#' },
-    { name: 'Analytics', href: '#' },
-    { name: 'Automation', href: '#' },
-    { name: 'Commerce', href: '#' },
+    { name: 'Hotels vergelijken', href: '#' },
+    { name: 'Prijsalerts', href: '#' },
+    { name: 'Reisplanning', href: '#' },
+    { name: 'Groepsreizen', href: '#' },
   ],
   support: [
-    { name: 'Submit ticket', href: '#' },
-    { name: 'Documentation', href: '#' },
-    { name: 'Guides', href: '#' },
+    { name: 'Contact opnemen', href: '#' },
+    { name: 'Veelgestelde vragen', href: '#' },
+    { name: 'Handleiding', href: '#' },
   ],
   company: [
-    { name: 'About', href: '#' },
+    { name: 'Over ons', href: '#' },
     { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Press', href: '#' },
+    { name: 'Vacatures', href: '#' },
+    { name: 'Pers', href: '#' },
   ],
   legal: [
-    { name: 'Terms of service', href: '#' },
-    { name: 'Privacy policy', href: '#' },
-    { name: 'License', href: '#' },
-    { name: 'Insights', href: '#' },
+    { name: 'Algemene voorwaarden', href: '#' },
+    { name: 'Privacybeleid', href: '#' },
+    { name: 'Cookiebeleid', href: '#' },
+    { name: 'Disclaimer', href: '#' },
   ],
   social: [
     {
@@ -109,7 +109,7 @@ export default function Footer2() {
           <div className="space-y-8">
             <Logo className="w-20" />
             <p className="text-sm/6 text-balance text-gray-600 dark:text-neutral-400">
-              Making the world a better place through constructing elegant hierarchies.
+              Vind de beste hoteldeals in Nederland en daarbuiten. Vergelijk prijzen van honderden websites tegelijk.
             </p>
             <div className="flex gap-x-6">
               {navigation.social.map((item) => (
@@ -123,7 +123,7 @@ export default function Footer2() {
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-neutral-300">Solutions</h3>
+                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-neutral-300">Diensten</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.solutions.map((item) => (
                     <li key={item.name}>
@@ -135,7 +135,7 @@ export default function Footer2() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-neutral-300">Support</h3>
+                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-neutral-300">Ondersteuning</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.support.map((item) => (
                     <li key={item.name}>
@@ -149,7 +149,7 @@ export default function Footer2() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-neutral-300">Company</h3>
+                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-neutral-300">Bedrijf</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.company.map((item) => (
                     <li key={item.name}>
@@ -161,7 +161,7 @@ export default function Footer2() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-neutral-300">Legal</h3>
+                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-neutral-300">Juridisch</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.legal.map((item) => (
                     <li key={item.name}>
@@ -177,7 +177,7 @@ export default function Footer2() {
         </div>
         <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 dark:border-gray-700">
           <p className="text-sm/6 text-gray-600 dark:text-neutral-400">
-            &copy; 2025 Your Company, Inc. All rights reserved.
+            &copy; 2025 DeHotelVergelijker.nl. Alle rechten voorbehouden.
           </p>
         </div>
       </div>

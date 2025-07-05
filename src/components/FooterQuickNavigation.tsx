@@ -10,12 +10,12 @@ import { useAside } from './aside'
 
 const FOOTER_QUICK_NAV = [
   {
-    name: 'Explore',
+    name: 'Ontdek',
     link: '/',
     icon: MagnifyingGlassIcon,
   },
   {
-    name: 'Wishlists',
+    name: 'Favorieten',
     link: '/account-savelists',
     icon: HeartIcon,
   },
