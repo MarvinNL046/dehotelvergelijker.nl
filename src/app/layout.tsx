@@ -2,7 +2,6 @@ import '@/styles/tailwind.css'
 import { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import 'rc-slider/assets/index.css'
-import CustomizeControl from './customize-control'
 import ThemeProvider from './theme-provider'
 
 const poppins = Poppins({
@@ -13,11 +12,11 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Chisfis',
-    default: 'Chisfis - Booking online React Next.js template',
+    template: '%s - DeHotelVergelijker.nl',
+    default: 'DeHotelVergelijker.nl - Vergelijk hotels in Nederland en vind de beste deals',
   },
-  description: 'Booking online & rental online Next.js Template',
-  keywords: ['Chisfis', 'Booking online', 'Rental online', 'React Next.js template'],
+  description: 'Vergelijk hotelprijzen van honderden websites tegelijk. Vind de beste hoteldeals in Nederland met DeHotelVergelijker.nl',
+  keywords: ['hotel vergelijken', 'hotels Nederland', 'goedkope hotels', 'hotel deals', 'hotel boeken', 'hotel prijsvergelijking'],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -27,9 +26,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <div>
             {children}
-
-            {/* For Chisfis's demo  -- you can remove it  */}
-            <CustomizeControl />
           </div>
         </ThemeProvider>
       </body>
