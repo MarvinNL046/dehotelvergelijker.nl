@@ -22,27 +22,27 @@ const DEMO_DATA: SectionHowItWorkProps['data'] = [
   {
     id: 1,
     img: HIW1img,
-    title: 'Book & relax',
-    desc: 'Let each trip be an inspirational journey, each room a peaceful space',
+    title: 'Vergelijk & boek',
+    desc: 'Vergelijk prijzen van honderden websites en vind de beste deal voor jouw reis',
   },
   {
     id: 2,
     img: HIW2img,
-    title: 'Smart checklist',
-    desc: 'Let each trip be an inspirational journey, each room a peaceful space',
+    title: 'Slimme filters',
+    desc: 'Filter op prijs, locatie, faciliteiten en meer om het perfecte hotel te vinden',
   },
   {
     id: 3,
     img: HIW3img,
-    title: 'Save more',
-    desc: 'Let each trip be an inspirational journey, each room a peaceful space',
+    title: 'Bespaar geld',
+    desc: 'Bespaar tot 80% op je hotelboeking door de beste prijzen te vergelijken',
   },
 ]
 
-const SectionHowItWork: FC<SectionHowItWorkProps> = ({ className = '', data = DEMO_DATA, title = 'How it work' }) => {
+const SectionHowItWork: FC<SectionHowItWorkProps> = ({ className = '', data = DEMO_DATA, title = 'Hoe het werkt' }) => {
   return (
     <div className={`nc-SectionHowItWork ${className}`} data-nc-id="SectionHowItWork">
-      <Heading isCenter subheading="Keep calm & travel on">
+      <Heading isCenter subheading="Simpel, snel en voordelig">
         {title}
       </Heading>
       <div className="relative mt-20 grid gap-20 md:grid-cols-3">

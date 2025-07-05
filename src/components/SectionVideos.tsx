@@ -19,31 +19,31 @@ interface SectionVideosProps {
 const demo_videos: VideoType[] = [
   {
     id: 'p4U5ArTFMEY',
-    title: 'Magical Scotland - 4K Scenic Relaxation Film with Calming Music',
+    title: 'Amsterdam - De beste hotels in het centrum',
     thumbnail:
       'https://images.pexels.com/photos/131423/pexels-photo-131423.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
   },
   {
     id: 'y7gKlzvg8xk',
-    title: 'Magical Scotland - 4K Scenic Relaxation Film with Calming Music',
+    title: 'Rotterdam - Moderne hotels aan de Maas',
     thumbnail:
       'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
   },
   {
     id: 'fKXaypnVL8s',
-    title: 'Magical Scotland - 4K Scenic Relaxation Film with Calming Music',
+    title: 'Maastricht - Luxe hotels in historisch centrum',
     thumbnail:
       'https://images.pexels.com/photos/1660995/pexels-photo-1660995.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
   },
   {
     id: 'unPKJJjQP0A',
-    title: 'Magical Scotland - 4K Scenic Relaxation Film with Calming Music',
+    title: 'Giethoorn - Romantische hotels aan het water',
     thumbnail:
       'https://images.pexels.com/photos/4983184/pexels-photo-4983184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
   },
   {
     id: 'vazwd0HOohE',
-    title: 'Magical Scotland - 4K Scenic Relaxation Film with Calming Music',
+    title: 'Zeeland - Strandhotels voor een perfecte vakantie',
     thumbnail:
       'https://images.pexels.com/photos/2549018/pexels-photo-2549018.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
   },
@@ -117,8 +117,8 @@ const SectionVideos: FC<SectionVideosProps> = ({ videos = demo_videos, className
 
   return (
     <div className={`nc-SectionVideos ${className}`}>
-      <Heading subheading="Check out our hottest videos. View more and share more new perspectives on just about any topic. Everyone's welcome.">
-        🎬 The Videos
+      <Heading subheading="Bekijk onze inspirerende video's over de mooiste hotelbestemmingen in Nederland en daarbuiten.">
+        🎬 Inspiratie video's
       </Heading>
 
       <div className="relative flex flex-col sm:py-4 sm:pe-4 md:py-6 md:pe-6 lg:flex-row xl:py-14 xl:pe-14">

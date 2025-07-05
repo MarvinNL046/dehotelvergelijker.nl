@@ -24,7 +24,7 @@ const HeroSearchFormSmall = ({ className, initTab = 'Stays' }: { className?: str
               )}
             >
               <div className="relative">
-                <span className="sr-only">{tab.name}</span>
+                <span className="sr-only">{tab.displayName}</span>
                 <HugeiconsIcon icon={tab.icon} size={28} />
                 <span className="absolute top-full me-2 mt-1 hidden h-0.5 w-full rounded-full bg-neutral-800 group-data-selected:block dark:bg-neutral-100" />
               </div>

@@ -16,18 +16,18 @@ const SectionSubscribe2: FC<Props> = ({ className = '' }) => {
   return (
     <div className={`relative flex flex-col lg:flex-row lg:items-center ${className}`}>
       <div className="mb-10 shrink-0 lg:me-10 lg:mb-0 lg:w-2/5">
-        <Heading>Join our newsletter 🎉</Heading>
+        <Heading>Schrijf je in voor onze nieuwsbrief 🎉</Heading>
         <Subheading className="mt-5">
-          Read and share new perspectives on just about any topic. Everyone&apos;s welcome.
+          Ontvang de beste hoteldeals en exclusieve kortingen direct in je inbox.
         </Subheading>
         <ul className="mt-10 space-y-4">
           <li className="flex items-center gap-x-4">
             <Badge color="blue">01</Badge>
-            <span className="font-medium text-neutral-700 dark:text-neutral-300">Get more discount</span>
+            <span className="font-medium text-neutral-700 dark:text-neutral-300">Exclusieve kortingen tot 50%</span>
           </li>
           <li className="flex items-center gap-x-4">
             <Badge color="red">02</Badge>
-            <span className="font-medium text-neutral-700 dark:text-neutral-300">Get premium magazines</span>
+            <span className="font-medium text-neutral-700 dark:text-neutral-300">Vroege toegang tot nieuwe deals</span>
           </li>
         </ul>
         <form className="relative mt-10 max-w-sm" action={'#'} method="POST">

@@ -16,8 +16,8 @@ interface SectionBecomeAnAuthorProps {
 const SectionBecomeAnAuthor: FC<SectionBecomeAnAuthorProps> = ({
   className = '',
   rightImg = rightImgDemo,
-  heading = 'Why did you choose us?',
-  subHeading = 'Join us for a journey full of experiences. With Chisfis, booking resorts, villas, hotels, private homes, and apartments becomes quick, convenient, and easy.',
+  heading = 'Waarom kiezen voor ons?',
+  subHeading = 'Word partner van DeHotelVergelijker.nl en bereik duizenden reizigers. Plaats je hotel en ontvang meer boekingen via ons platform.',
 }) => {
   return (
     <div className={`relative flex flex-col items-center lg:flex-row ${className}`}>

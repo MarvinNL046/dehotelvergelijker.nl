@@ -19,15 +19,16 @@ import { StaySearchForm } from './StaySearchForm'
 
 export const formTabs: {
   name: ListingType
+  displayName: string
   icon: IconSvgElement
   href: string
   formComponent: React.ComponentType<{ formStyle: 'default' | 'small' }>
 }[] = [
-  { name: 'Stays', icon: House03Icon, href: '/', formComponent: StaySearchForm },
-  { name: 'Cars', icon: Car05Icon, href: '/car', formComponent: RentalCarSearchForm },
-  { name: 'Experiences', icon: HotAirBalloonFreeIcons, href: '/experience', formComponent: ExperiencesSearchForm },
-  { name: 'RealEstates', icon: RealEstate02Icon, href: '/real-estate', formComponent: RealEstateHeroSearchForm },
-  { name: 'Flights', icon: Airplane02Icon, href: '/flight-categories/all', formComponent: FlightSearchForm },
+  { name: 'Stays', displayName: 'Hotels', icon: House03Icon, href: '/', formComponent: StaySearchForm },
+  { name: 'Cars', displayName: 'Auto\'s', icon: Car05Icon, href: '/car', formComponent: RentalCarSearchForm },
+  { name: 'Experiences', displayName: 'Ervaringen', icon: HotAirBalloonFreeIcons, href: '/experience', formComponent: ExperiencesSearchForm },
+  { name: 'RealEstates', displayName: 'Vastgoed', icon: RealEstate02Icon, href: '/real-estate', formComponent: RealEstateHeroSearchForm },
+  { name: 'Flights', displayName: 'Vluchten', icon: Airplane02Icon, href: '/flight-categories/all', formComponent: FlightSearchForm },
 ]
 
 const HeroSearchForm = ({ className, initTab = 'Stays' }: { className?: string; initTab: ListingType }) => {
@@ -44,7 +45,7 @@ const HeroSearchForm = ({ className, initTab = 'Stays' }: { className?: string; 
                 className="group/tab flex shrink-0 cursor-pointer items-center text-sm font-medium text-neutral-500 hover:text-neutral-700 focus-visible:outline-hidden data-selected:text-neutral-950 lg:text-base dark:hover:text-neutral-400 dark:data-selected:text-neutral-100"
               >
                 <div className="me-1.5 hidden size-2.5 rounded-full bg-neutral-950 group-data-selected/tab:block xl:me-2 dark:bg-neutral-100" />
-                <span>{tab.name}</span>
+                <span>{tab.displayName}</span>
               </Headless.Tab>
             )
           })}
