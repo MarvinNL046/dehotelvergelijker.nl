@@ -3,7 +3,7 @@ import ButtonPrimary from '@/shared/ButtonPrimary'
 import ButtonSecondary from '@/shared/ButtonSecondary'
 import { Divider } from '@/shared/divider'
 import { Heading } from '@/shared/Heading'
-import { WifiFullIcon, Globe02Icon, CheckIcon, XIcon, QrCodeIcon } from '@hugeicons/core-free-icons'
+import { WifiIcon, Globe01Icon, CheckmarkIcon, CancelIcon, ScannerIcon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Metadata } from 'next'
 import Image from 'next/image'
@@ -24,17 +24,17 @@ const popularDestinations = [
 
 const features = [
   {
-    icon: WifiFullIcon,
+    icon: WifiIcon,
     title: 'Direct verbonden',
     description: 'Activeer je eSIM voor vertrek en land met werkend internet',
   },
   {
-    icon: Globe02Icon,
+    icon: Globe01Icon,
     title: '150+ landen',
     description: 'Één eSIM voor meerdere landen, ideaal voor rondreis',
   },
   {
-    icon: CheckIcon,
+    icon: CheckmarkIcon,
     title: 'Geen verborgen kosten',
     description: 'Transparante prijzen, geen roaming kosten achteraf',
   },
@@ -123,7 +123,7 @@ const PageEsim = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <ButtonPrimary href={AIRALO_APP_LINK} target="_blank" rel="noopener noreferrer">
-                  <HugeiconsIcon icon={QrCodeIcon} size={20} className="mr-2" />
+                  <HugeiconsIcon icon={ScannerIcon} size={20} className="mr-2" />
                   Download App
                 </ButtonPrimary>
                 <ButtonSecondary href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
