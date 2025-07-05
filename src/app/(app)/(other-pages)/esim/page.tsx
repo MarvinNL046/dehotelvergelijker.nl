@@ -2,7 +2,7 @@ import ButtonPrimary from '@/shared/ButtonPrimary'
 import ButtonSecondary from '@/shared/ButtonSecondary'
 import { Divider } from '@/shared/divider'
 import Heading from '@/shared/Heading'
-import { WifiIcon, GlobeIcon, CheckCircleIcon, CameraIcon } from '@heroicons/react/24/outline'
+import { WifiIcon, GlobeAltIcon, CheckCircleIcon, CameraIcon } from '@heroicons/react/24/outline'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import AiraloWidgetSimple from '@/components/AiraloWidgetSimple'
@@ -26,7 +26,7 @@ const features = [
     description: 'Activeer je eSIM voor vertrek en land met werkend internet',
   },
   {
-    icon: GlobeIcon,
+    icon: GlobeAltIcon,
     title: '200+ landen',
     description: 'Één eSIM voor meerdere landen, ideaal voor rondreis',
   },
