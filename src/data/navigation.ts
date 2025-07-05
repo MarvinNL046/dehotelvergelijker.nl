@@ -7,16 +7,26 @@ export async function getNavigation(): Promise<TNavigationItem[]> {
     },
     {
       id: '2',
-      href: '/real-estate',
-      name: 'Vastgoed',
-    },
-    {
-      id: '4',
       href: '/car',
       name: 'Auto\'s',
     },
     {
+      id: '3',
+      href: '/experience',
+      name: 'Ervaringen',
+    },
+    {
+      id: '4',
+      href: '/real-estate',
+      name: 'Vastgoed',
+    },
+    {
       id: '5',
+      href: '/flight-categories/all',
+      name: 'Vluchten',
+    },
+    {
+      id: '6',
       href: '/',
       name: 'Meer',
       type: 'mega-menu',
@@ -80,39 +90,6 @@ export async function getNavigation(): Promise<TNavigationItem[]> {
             { id: '4-7', href: '/add-listing/1', name: '+ Advertentie toevoegen' },
             { id: '4-8', href: '/account', name: 'Account' },
           ],
-        },
-      ],
-    },
-    {
-      id: '6',
-      href: '/',
-      name: 'Reizigers',
-      type: 'dropdown',
-      children: [
-        {
-          id: '1',
-          href: '/',
-          name: 'Hotels',
-        },
-        {
-          id: '2',
-          href: '/real-estate',
-          name: 'Vastgoed',
-        },
-        {
-          id: '3',
-          href: '/experience',
-          name: 'Ervaringen',
-        },
-        {
-          id: '4',
-          href: '/car',
-          name: 'Auto\'s',
-        },
-        {
-          id: '5',
-          href: '/flight-categories/all',
-          name: 'Vluchten',
         },
       ],
     },
