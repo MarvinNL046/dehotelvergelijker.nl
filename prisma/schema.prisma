@@ -1,0 +1,259 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// User Management
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  image         String?
+  emailVerified DateTime?
+  password      String?
+  role          UserRole  @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  favorites     Favorite[]
+  reviews       Review[]
+  priceAlerts   PriceAlert[]
+  searchHistory SearchHistory[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Hotel Data
+model Hotel {
+  id              String    @id @default(cuid())
+  externalId      String    @unique // ID from booking.com, hotels.com etc
+  provider        Provider
+  name            String
+  slug            String    @unique
+  description     String
+  address         String
+  city            String
+  country         String
+  postalCode      String?
+  latitude        Float
+  longitude       Float
+  stars           Int?
+  
+  // Features
+  amenities       String[]  // WiFi, Parking, Pool, etc
+  images          String[]
+  checkInTime     String?
+  checkOutTime    String?
+  
+  // Pricing
+  minPrice        Float?    // Cached min price
+  currency        String    @default("EUR")
+  
+  // Stats
+  rating          Float?
+  reviewCount     Int       @default(0)
+  viewCount       Int       @default(0)
+  bookingCount    Int       @default(0)
+  
+  active          Boolean   @default(true)
+  featured        Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  rooms           Room[]
+  reviews         Review[]
+  favorites       Favorite[]
+  priceHistory    PriceHistory[]
+  priceAlerts     PriceAlert[]
+}
+
+model Room {
+  id              String    @id @default(cuid())
+  hotelId         String
+  externalId      String
+  name            String
+  description     String?
+  maxGuests       Int
+  bedConfiguration String?  // "1 King Bed" or "2 Single Beds"
+  size            Float?    // in m²
+  amenities       String[]
+  images          String[]
+  
+  hotel           Hotel     @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  availability    Availability[]
+}
+
+model Availability {
+  id              String    @id @default(cuid())
+  roomId          String
+  date            DateTime
+  available       Boolean
+  price           Float
+  originalPrice   Float?    // For showing discounts
+  provider        Provider
+  bookingUrl      String    // Affiliate link
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  room            Room      @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  
+  @@unique([roomId, date, provider])
+  @@index([date, price])
+}
+
+// User Interactions
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  hotelId   String
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hotel     Hotel    @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, hotelId])
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  userId      String
+  hotelId     String
+  rating      Int      // 1-5
+  title       String
+  content     String
+  pros        String?
+  cons        String?
+  travelType  TravelType?
+  visitDate   DateTime?
+  helpful     Int      @default(0)
+  verified    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hotel       Hotel    @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+}
+
+model PriceAlert {
+  id            String   @id @default(cuid())
+  userId        String
+  hotelId       String
+  targetPrice   Float
+  checkIn       DateTime
+  checkOut      DateTime
+  guests        Int
+  active        Boolean  @default(true)
+  triggered     Boolean  @default(false)
+  lastChecked   DateTime @default(now())
+  createdAt     DateTime @default(now())
+  
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hotel         Hotel    @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+}
+
+model SearchHistory {
+  id          String   @id @default(cuid())
+  userId      String?
+  sessionId   String?  // For anonymous users
+  destination String
+  checkIn     DateTime
+  checkOut    DateTime
+  guests      Int
+  filters     Json?    // Store applied filters
+  resultCount Int?
+  createdAt   DateTime @default(now())
+  
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId, createdAt])
+  @@index([sessionId, createdAt])
+}
+
+// Analytics
+model PriceHistory {
+  id          String   @id @default(cuid())
+  hotelId     String
+  date        DateTime
+  minPrice    Float
+  avgPrice    Float
+  provider    Provider
+  
+  hotel       Hotel    @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  
+  @@index([hotelId, date])
+}
+
+model ClickTracking {
+  id          String   @id @default(cuid())
+  sessionId   String
+  hotelId     String
+  provider    Provider
+  clickType   ClickType
+  revenue     Float?   // Estimated commission
+  createdAt   DateTime @default(now())
+  
+  @@index([hotelId, createdAt])
+  @@index([provider, createdAt])
+}
+
+// Enums
+enum UserRole {
+  USER
+  ADMIN
+  MODERATOR
+}
+
+enum Provider {
+  BOOKING_COM
+  HOTELS_COM
+  EXPEDIA
+  AGODA
+  INTERNAL
+}
+
+enum TravelType {
+  BUSINESS
+  COUPLE
+  FAMILY
+  FRIENDS
+  SOLO
+}
+
+enum ClickType {
+  VIEW
+  AVAILABILITY_CHECK
+  BOOKING_REDIRECT
+}
