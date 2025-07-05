@@ -1,3 +1,4 @@
+import { Badge } from '@/shared/Badge'
 import ButtonPrimary from '@/shared/ButtonPrimary'
 import ButtonSecondary from '@/shared/ButtonSecondary'
 import { Divider } from '@/shared/divider'
@@ -5,7 +6,8 @@ import Heading from '@/shared/Heading'
 import { WifiIcon, GlobeIcon, CheckCircleIcon, CameraIcon } from '@heroicons/react/24/outline'
 import { Metadata } from 'next'
 import Image from 'next/image'
-import AiraloWidgetSimple from '@/components/AiraloWidgetSimple'
+import Link from 'next/link'
+import AiraloWidget from '@/components/AiraloWidget'
 
 export const metadata: Metadata = {
   title: 'eSIM voor Reizigers - DeHotelVergelijker.nl',
@@ -47,9 +49,7 @@ const PageEsim = () => {
       <div className="relative bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-800">
         <div className="container py-16 sm:py-20 lg:py-28">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="inline-flex items-center gap-x-1.5 rounded-full px-2.5 py-0.5 text-xs/5 font-medium forced-colors:outline bg-blue-500/15 text-blue-700 group-data-hover:bg-blue-500/25 dark:bg-blue-500/10 dark:text-blue-400 dark:group-data-hover:bg-blue-500/20 mb-5">
-              Powered by Airalo
-            </span>
+            <Badge color="blue" className="mb-5">Powered by Airalo</Badge>
             <h1 className="text-4xl font-semibold sm:text-5xl lg:text-6xl">
               Blijf verbonden met <span className="text-primary-600">eSIM</span>
             </h1>
@@ -122,7 +122,7 @@ const PageEsim = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <ButtonPrimary href={AIRALO_APP_LINK} target="_blank" rel="noopener noreferrer">
-                  <CameraIcon className="inline-block h-5 w-5 mr-2" />
+                  <CameraIcon className="h-5 w-5 mr-2" />
                   Download App
                 </ButtonPrimary>
                 <ButtonSecondary href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
@@ -155,7 +155,7 @@ const PageEsim = () => {
         </Heading>
         <div className="mt-12 mx-auto max-w-5xl">
           <div className="bg-white rounded-3xl p-6 shadow-lg dark:bg-neutral-800">
-            <AiraloWidgetSimple />
+            <AiraloWidget />
           </div>
         </div>
       </div>
