@@ -16,8 +16,8 @@ interface SectionBecomeAnAuthorProps {
 const SectionBecomeAnAuthor: FC<SectionBecomeAnAuthorProps> = ({
   className = '',
   rightImg = rightImgDemo,
-  heading = 'Waarom kiezen voor ons?',
-  subHeading = 'Word partner van DeHotelVergelijker.nl en bereik duizenden reizigers. Plaats je hotel en ontvang meer boekingen via ons platform.',
+  heading = 'Is jouw hotel nog niet te vinden?',
+  subHeading = 'Word partner van DeHotelVergelijker.nl en bereik duizenden Nederlandse reizigers. Verhoog je zichtbaarheid en ontvang meer directe boekingen.',
 }) => {
   return (
     <div className={`relative flex flex-col items-center lg:flex-row ${className}`}>

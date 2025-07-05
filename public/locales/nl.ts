@@ -10,7 +10,7 @@ export const nl = {
     night: 'nacht',
     'Enter your email': 'Voer je e-mail in',
     'Become a host': 'Word een host',
-    'Become an author': 'Word een auteur',
+    'Become an author': 'Word partner hotel',
     Clear: 'Wissen',
     'Clear All': 'Alles wissen',
     Apply: 'Toepassen',

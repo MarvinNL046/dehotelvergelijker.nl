@@ -13,10 +13,10 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: {
     template: '%s - DeHotelVergelijker.nl',
-    default: 'DeHotelVergelijker.nl - Vergelijk hotels in Nederland en vind de beste deals',
+    default: 'DeHotelVergelijker.nl - Vergelijk Hotels Wereldwijd & Bespaar tot 80%',
   },
-  description: 'Vergelijk hotelprijzen van honderden websites tegelijk. Vind de beste hoteldeals in Nederland met DeHotelVergelijker.nl',
-  keywords: ['hotel vergelijken', 'hotels Nederland', 'goedkope hotels', 'hotel deals', 'hotel boeken', 'hotel prijsvergelijking'],
+  description: 'Vergelijk hotelprijzen van meer dan 1000 boekingssites zoals Booking.com, Hotels.com en Expedia. Vind de beste hoteldeals wereldwijd en bespaar tot 80% op je hotelboeking.',
+  keywords: ['hotel vergelijken', 'hotel prijsvergelijking', 'goedkope hotels', 'hotel deals', 'hotel boeken', 'hotels wereldwijd', 'beste hotelprijs', 'hotel kortingen'],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

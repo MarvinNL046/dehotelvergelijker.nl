@@ -22,8 +22,8 @@ import HeadingWithSub from '@/shared/Heading'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'DeHotelVergelijker.nl - Vind de beste hoteldeals in Nederland',
-  description: 'Vergelijk hotelprijzen van Booking.com, Hotels.com en meer. Bespaar tot 80% op hotels in Amsterdam, Rotterdam, Maastricht en heel Nederland.',
+  title: 'DeHotelVergelijker.nl - Vergelijk Hotels Wereldwijd & Bespaar tot 80%',
+  description: 'Vergelijk hotelprijzen van meer dan 1000 boekingssites waaronder Booking.com, Hotels.com, Expedia en meer. Vind de beste hoteldeals voor jouw reis en bespaar tot 80% op je hotelboeking.',
 }
 
 async function Page() {
@@ -36,25 +36,25 @@ async function Page() {
       <BgGlassmorphism />
       <div className="relative container mb-24 flex flex-col gap-y-24 lg:mb-28 lg:gap-y-32">
         <HeroSectionWithSearchForm1
-          heading="Vind je perfecte hotel"
+          heading="Vergelijk hotels wereldwijd, bespaar tot 80%"
           image={heroImage}
           imageAlt="hero"
           searchForm={<HeroSearchForm initTab="Stays" />}
           description={
             <>
               <p className="max-w-xl text-base text-neutral-500 sm:text-xl dark:text-neutral-400">
-                Vergelijk prijzen van honderden websites en bespaar tot 80% op je hotelboeking.
+                DeHotelVergelijker.nl doorzoekt meer dan 1000 boekingssites om de beste hotelprijzen voor jou te vinden. Van luxe resorts tot budgethotels.
               </p>
               <ButtonPrimary href={'/stay-categories/all'} className="sm:text-base/normal">
-                Begin met zoeken
+                Vergelijk hotelprijzen
               </ButtonPrimary>
             </>
           }
         />
 
         <div>
-          <HeadingWithSub subheading="Ontdek de beste hotels in Nederland">
-            Populaire bestemmingen
+          <HeadingWithSub subheading="Vergelijk hotelprijzen in populaire bestemmingen wereldwijd">
+            Trending bestemmingen 2024
           </HeadingWithSub>
           <SectionSliderNewCategories categoryCardType="card3" categories={categories.slice(0, 7)} />
         </div>
@@ -74,8 +74,8 @@ async function Page() {
         <Divider />
 
         <div>
-          <HeadingWithSub isCenter subheading={'Vind hotels in jouw buurt'}>
-            Ontdek lokale pareltjes
+          <HeadingWithSub isCenter subheading={'Populaire hotelbestemmingen voor Nederlanders'}>
+            Favoriete vakantielanden
           </HeadingWithSub>
           <SectionGridCategoryBox categories={categories.slice(0, 8)} />
         </div>
@@ -86,8 +86,8 @@ async function Page() {
         </div>
 
         <div>
-          <HeadingWithSub subheading="Vind het perfecte hotel voor jouw reis">
-            Hotel categorieën
+          <HeadingWithSub subheading="Ontdek onze handgepickte hoteldeals">
+            Exclusieve aanbiedingen
           </HeadingWithSub>
           <SectionSliderNewCategories
             itemClassName="w-[17rem] lg:w-1/3 xl:w-1/4"
