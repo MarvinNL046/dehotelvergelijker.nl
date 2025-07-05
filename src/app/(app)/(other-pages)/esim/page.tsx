@@ -5,7 +5,6 @@ import Heading from '@/shared/Heading'
 import { WifiIcon, GlobeAltIcon, CheckCircleIcon, CameraIcon } from '@heroicons/react/24/outline'
 import { Metadata } from 'next'
 import Image from 'next/image'
-import AiraloWidgetSimple from '@/components/AiraloWidgetSimple'
 
 export const metadata: Metadata = {
   title: 'eSIM voor Reizigers - DeHotelVergelijker.nl',
@@ -148,14 +147,45 @@ const PageEsim = () => {
 
       <Divider />
 
-      {/* Airalo Widget Section */}
+      {/* Search Section */}
       <div className="container py-16 lg:py-24">
         <Heading isCenter subheading="Zoek direct je bestemming">
           Vind de perfecte eSIM voor jouw reis
         </Heading>
-        <div className="mt-12 mx-auto max-w-5xl">
-          <div className="bg-white rounded-3xl p-6 shadow-lg dark:bg-neutral-800">
-            <AiraloWidgetSimple />
+        <div className="mt-12 mx-auto max-w-4xl">
+          <div className="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 rounded-3xl p-8 lg:p-12">
+            <div className="text-center">
+              <p className="text-lg text-neutral-700 dark:text-neutral-300 mb-8">
+                Zoek uit meer dan 200+ landen en regio's. Vind de beste eSIM deals voor jouw bestemming.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <ButtonPrimary size="large" href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
+                  Zoek eSIM pakketten
+                </ButtonPrimary>
+                <span className="text-neutral-600 dark:text-neutral-400">of</span>
+                <ButtonSecondary size="large" href={AIRALO_APP_LINK} target="_blank" rel="noopener noreferrer">
+                  Download de app
+                </ButtonSecondary>
+              </div>
+              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                <div>
+                  <p className="text-2xl font-bold text-primary-600">200+</p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">Landen</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-primary-600">500+</p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">eSIM Pakketten</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-primary-600">24/7</p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">Support</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-primary-600">5M+</p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">Gebruikers</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
