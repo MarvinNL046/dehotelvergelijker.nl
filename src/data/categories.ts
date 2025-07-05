@@ -352,11 +352,11 @@ export async function getExperienceCategoryByHandle(handle?: string) {
   if (!handle || handle === 'all') {
     return {
       id: 'experience://all',
-      name: 'Explore experiences',
+      name: 'Alle ervaringen',
       handle: 'all',
-      region: 'Worldwide',
+      region: 'Wereldwijd',
       href: '/experience-categories/all',
-      description: 'lorem ipsum dolor sit amet',
+      description: 'Ontdek alle ervaringen wereldwijd',
       count: 3000,
       thumbnail:
         'https://images.pexels.com/photos/64271/queen-of-liberty-statue-of-liberty-new-york-liberty-statue-64271.jpeg',
@@ -475,7 +475,7 @@ export async function getRealEstateCategoryByHandle(handle?: string) {
   if (!handle || handle === 'all') {
     return {
       id: 'real-estate://all',
-      name: 'Real-estates',
+      name: 'Alle vastgoed',
       handle: 'all',
       href: '/real-estate-categories/all',
       count: 20000,
@@ -483,11 +483,11 @@ export async function getRealEstateCategoryByHandle(handle?: string) {
         'https://images.pexels.com/photos/64271/queen-of-liberty-statue-of-liberty-new-york-liberty-statue-64271.jpeg',
       coverImage: {
         src: realEstateCategoryCoverImage.src,
-        width: realEstateCategoryCoverImage.width,
-        height: realEstateCategoryCoverImage.height,
+        width: realEstateCoverImage.width,
+        height: realEstateCoverImage.height,
       },
-      region: 'Worldwide',
-      description: 'Explore all real estates around the world',
+      region: 'Wereldwijd',
+      description: 'Ontdek al het vastgoed wereldwijd',
     }
   }
   const categories = await getRealEstateCategories()
@@ -597,7 +597,7 @@ export async function getCarCategoryByHandle(handle?: string) {
   if (!handle || handle === 'all') {
     return {
       id: 'car://all',
-      name: 'Car rentals',
+      name: 'Alle huurauto\'s',
       handle: 'all',
       href: '/car-categories/all',
       count: 3000,
@@ -608,8 +608,8 @@ export async function getCarCategoryByHandle(handle?: string) {
         width: carCategoryCoverImage.width,
         height: carCategoryCoverImage.height,
       },
-      region: 'Worldwide',
-      description: 'Explore all cars around the world',
+      region: 'Wereldwijd',
+      description: 'Ontdek alle huurauto\'s wereldwijd',
     }
   }
 
@@ -660,7 +660,7 @@ export async function getFlightCategoryByHandle(handle?: string) {
   if (!handle || handle === 'all') {
     return {
       id: 'flight://all',
-      name: 'Book Flights',
+      name: 'Alle vluchten',
       handle: 'all',
       href: '/flight-categories/all',
       count: 3000,
@@ -671,8 +671,8 @@ export async function getFlightCategoryByHandle(handle?: string) {
         width: filghtCategoryCoverImage.width,
         height: filghtCategoryCoverImage.height,
       },
-      region: 'Worldwide',
-      description: 'Explore all flights around the world',
+      region: 'Wereldwijd',
+      description: 'Ontdek alle vluchten wereldwijd',
     }
   }
 

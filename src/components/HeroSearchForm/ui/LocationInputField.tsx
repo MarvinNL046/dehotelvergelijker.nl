@@ -33,22 +33,22 @@ const demoInitSuggests: Suggest[] = [
   },
   {
     id: '2',
-    name: 'Rotterdam',
+    name: 'Parijs',
     icon: EiffelTowerIcon,
   },
   {
     id: '3',
-    name: 'Maastricht',
+    name: 'New York',
     icon: TwinTowerIcon,
   },
   {
     id: '4',
-    name: 'Zeeland - Strandhotels',
+    name: 'Barcelona',
     icon: BeachIcon,
   },
   {
     id: '5',
-    name: 'Giethoorn',
+    name: 'Dubai',
     icon: LakeIcon,
   },
 ]
@@ -56,23 +56,23 @@ const demoInitSuggests: Suggest[] = [
 const demoSearchingSuggests: Suggest[] = [
   {
     id: '1',
-    name: 'Utrecht',
+    name: 'Rome',
   },
   {
     id: '2',
-    name: 'Den Haag',
+    name: 'Londen',
   },
   {
     id: '3',
-    name: 'Eindhoven',
+    name: 'Bangkok',
   },
   {
     id: '4',
-    name: 'Groningen',
+    name: 'Turkse Rivièra',
   },
   {
     id: '5',
-    name: 'Breda',
+    name: 'Bali',
   },
 ]
 
