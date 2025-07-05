@@ -3,8 +3,7 @@ import ButtonPrimary from '@/shared/ButtonPrimary'
 import ButtonSecondary from '@/shared/ButtonSecondary'
 import { Divider } from '@/shared/divider'
 import { Heading } from '@/shared/Heading'
-import { WifiIcon, Globe01Icon, CheckmarkIcon, CancelIcon, ScannerIcon } from '@hugeicons/core-free-icons'
-import { HugeiconsIcon } from '@hugeicons/react'
+import { WifiIcon, GlobeIcon, CheckCircleIcon, QrCodeIcon } from '@heroicons/react/24/outline'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -29,12 +28,12 @@ const features = [
     description: 'Activeer je eSIM voor vertrek en land met werkend internet',
   },
   {
-    icon: Globe01Icon,
-    title: '150+ landen',
+    icon: GlobeIcon,
+    title: '200+ landen',
     description: 'Één eSIM voor meerdere landen, ideaal voor rondreis',
   },
   {
-    icon: CheckmarkIcon,
+    icon: CheckCircleIcon,
     title: 'Geen verborgen kosten',
     description: 'Transparante prijzen, geen roaming kosten achteraf',
   },
@@ -75,7 +74,7 @@ const PageEsim = () => {
           {features.map((feature, index) => (
             <div key={index} className="text-center">
               <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900/20">
-                <HugeiconsIcon icon={feature.icon} size={32} className="text-primary-600 dark:text-primary-400" />
+                <feature.icon className="h-8 w-8 text-primary-600 dark:text-primary-400" />
               </div>
               <h3 className="mb-3 text-xl font-semibold">{feature.title}</h3>
               <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
@@ -123,7 +122,7 @@ const PageEsim = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <ButtonPrimary href={AIRALO_APP_LINK} target="_blank" rel="noopener noreferrer">
-                  <HugeiconsIcon icon={ScannerIcon} size={20} className="mr-2" />
+                  <QrCodeIcon className="h-5 w-5 mr-2" />
                   Download App
                 </ButtonPrimary>
                 <ButtonSecondary href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
