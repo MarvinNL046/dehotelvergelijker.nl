@@ -1,5 +1,5 @@
-import { en } from '../../public/locales/en'
+import { nl } from '../../public/locales/nl'
 
-const T = en
+const T = nl
 
 export default T

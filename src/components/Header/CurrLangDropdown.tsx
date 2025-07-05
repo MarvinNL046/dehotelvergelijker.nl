@@ -101,7 +101,7 @@ const CurrLangDropdown: FC<Props> = ({
       >
         <TabGroup>
           <TabList className="flex space-x-1 rounded-full bg-neutral-100 p-1 dark:bg-neutral-700">
-            {['Language', 'Currency'].map((category) => (
+            {['Taal', 'Valuta'].map((category) => (
               <Tab
                 key={category}
                 className={({ selected }) =>

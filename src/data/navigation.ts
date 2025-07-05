@@ -140,40 +140,28 @@ export type TNavigationItem = Partial<{
 export const getLanguages = async () => {
   return [
     {
-      id: 'English',
-      name: 'English',
-      description: 'United State',
+      id: 'Nederlands',
+      name: 'Nederlands',
+      description: 'Nederland',
       href: '#',
       active: true,
     },
     {
-      id: 'Vietnamese',
-      name: 'Vietnamese',
-      description: 'Vietnamese',
+      id: 'English',
+      name: 'English',
+      description: 'United States',
+      href: '#',
+    },
+    {
+      id: 'Deutsch',
+      name: 'Deutsch',
+      description: 'Deutschland',
       href: '#',
     },
     {
       id: 'Francais',
-      name: 'Francais',
-      description: 'Belgique',
-      href: '#',
-    },
-    {
-      id: 'Francais',
-      name: 'Francais',
-      description: 'Canada',
-      href: '#',
-    },
-    {
-      id: 'Francais',
-      name: 'Francais',
-      description: 'Belgique',
-      href: '#',
-    },
-    {
-      id: 'Francais',
-      name: 'Francais',
-      description: 'Canada',
+      name: 'Français',
+      description: 'France',
       href: '#',
     },
   ]
