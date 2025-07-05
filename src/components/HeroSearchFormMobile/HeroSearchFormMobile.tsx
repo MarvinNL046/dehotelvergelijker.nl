@@ -28,9 +28,9 @@ import StaySearchFormMobile from './stay-search-form/StaySearchFormMobile'
 
 const formTabs: { name: ListingType; displayName: string; icon: IconSvgElement; formComponent: React.ComponentType<{}> }[] = [
   { name: 'Stays', displayName: 'Hotels', icon: House03Icon, formComponent: StaySearchFormMobile },
+  { name: 'RealEstates', displayName: 'Vakantiehuizen', icon: RealEstate02Icon, formComponent: RealestateSearchFormMobile },
+  { name: 'Experiences', displayName: 'Activiteiten', icon: HotAirBalloonFreeIcons, formComponent: ExperienceSearchFormMobile },
   { name: 'Cars', displayName: 'Auto\'s', icon: Car05Icon, formComponent: CarSearchFormMobile },
-  { name: 'Experiences', displayName: 'Ervaringen', icon: HotAirBalloonFreeIcons, formComponent: ExperienceSearchFormMobile },
-  { name: 'RealEstates', displayName: 'Vastgoed', icon: RealEstate02Icon, formComponent: RealestateSearchFormMobile },
   { name: 'Flights', displayName: 'Vluchten', icon: Airplane02Icon, formComponent: FlightSearchFormMobile },
 ]
 

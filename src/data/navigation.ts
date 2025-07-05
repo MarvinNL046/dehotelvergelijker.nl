@@ -13,12 +13,12 @@ export async function getNavigation(): Promise<TNavigationItem[]> {
     {
       id: '3',
       href: '/experience',
-      name: 'Ervaringen',
+      name: 'Activiteiten',
     },
     {
       id: '4',
       href: '/real-estate',
-      name: 'Vastgoed',
+      name: 'Vakantiehuizen',
     },
     {
       id: '5',

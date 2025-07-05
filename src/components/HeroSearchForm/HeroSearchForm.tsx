@@ -25,9 +25,9 @@ export const formTabs: {
   formComponent: React.ComponentType<{ formStyle: 'default' | 'small' }>
 }[] = [
   { name: 'Stays', displayName: 'Hotels', icon: House03Icon, href: '/', formComponent: StaySearchForm },
+  { name: 'RealEstates', displayName: 'Vakantiehuizen', icon: RealEstate02Icon, href: '/real-estate', formComponent: RealEstateHeroSearchForm },
+  { name: 'Experiences', displayName: 'Activiteiten', icon: HotAirBalloonFreeIcons, href: '/experience', formComponent: ExperiencesSearchForm },
   { name: 'Cars', displayName: 'Auto\'s', icon: Car05Icon, href: '/car', formComponent: RentalCarSearchForm },
-  { name: 'Experiences', displayName: 'Ervaringen', icon: HotAirBalloonFreeIcons, href: '/experience', formComponent: ExperiencesSearchForm },
-  { name: 'RealEstates', displayName: 'Vastgoed', icon: RealEstate02Icon, href: '/real-estate', formComponent: RealEstateHeroSearchForm },
   { name: 'Flights', displayName: 'Vluchten', icon: Airplane02Icon, href: '/flight-categories/all', formComponent: FlightSearchForm },
 ]
 
