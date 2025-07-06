@@ -64,7 +64,12 @@ async function Page() {
         </div>
 
         <SectionOurFeatures className="py-14" />
-        <SectionGridFeaturePlaces stayListings={stayListings} cardType="card2" />
+        <SectionGridFeaturePlaces 
+          stayListings={stayListings} 
+          cardType="card2" 
+          heading="Uitgelichte accommodaties"
+          subHeading="Ontdek je perfecte verblijf"
+        />
         <Divider />
         <SectionHowItWork />
         <div className="relative py-20">
