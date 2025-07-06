@@ -23,18 +23,18 @@ import { FC, useContext } from 'react'
 const DEMO_DATA = [
   {
     id: 1,
-    clientName: 'Tiana Abie',
-    content: 'Great quality products, affordable prices, fast and friendly delivery. I very recommend.',
+    clientName: 'Sophie van der Berg',
+    content: 'Geweldige service! Ik vond binnen enkele minuten het perfecte hotel voor mijn vakantie en bespaard €150.',
   },
   {
     id: 2,
-    clientName: 'Lennie Swiffan',
-    content: 'Great quality products, affordable prices, fast and friendly delivery. I very recommend.',
+    clientName: 'Mark Jansen',
+    content: 'DeHotelVergelijker heeft me geholpen het beste hotel in Barcelona te vinden. Snel, makkelijk en betrouwbaar!',
   },
   {
     id: 3,
-    clientName: 'Berta Emili',
-    content: 'Great quality products, affordable prices, fast and friendly delivery. I very recommend.',
+    clientName: 'Emma de Vries',
+    content: 'Fantastisch platform! Ik gebruik het voor al mijn zakenreizen. De prijsvergelijking bespaart me veel tijd en geld.',
   },
 ]
 
@@ -51,8 +51,8 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
     slidesToScroll: 1,
     loop: true,
   },
-  heading = 'Good news from far away 🥇',
-  subHeading = "Let's see what people think of Chisfis",
+  heading = 'Ervaringen van onze gebruikers 🥇',
+  subHeading = "Ontdek wat reizigers zeggen over DeHotelVergelijker",
 }) => {
   const theme = useContext(ThemeContext)
 
