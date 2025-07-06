@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Notification } from '@/types/notification'
 import NotificationService from '@/services/notification-service'
 
@@ -11,7 +11,7 @@ export function useNotifications() {
 
   const notificationService = NotificationService.getInstance()
 
-  const fetchNotifications = async () => {
+  const fetchNotifications = useCallback(async () => {
     try {
       const data = await notificationService.getNotifications()
       // Ensure dates are proper Date objects
@@ -27,7 +27,7 @@ export function useNotifications() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [notificationService])
 
   useEffect(() => {
     fetchNotifications()
@@ -36,7 +36,7 @@ export function useNotifications() {
     const interval = setInterval(fetchNotifications, 60000) // Check every minute
 
     return () => clearInterval(interval)
-  }, [])
+  }, [fetchNotifications])
 
   const markAsRead = async (notificationId: string) => {
     await notificationService.markAsRead(notificationId)

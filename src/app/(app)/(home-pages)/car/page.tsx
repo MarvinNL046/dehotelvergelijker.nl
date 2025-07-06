@@ -73,7 +73,7 @@ async function PageHome() {
           </div>
           <div className="mt-16 flex justify-center">
             <ButtonPrimary href={'/car-categories/all'} className="sm:text-base/normal">
-              Bekijk alle huurauto's
+              Bekijk alle huurauto&apos;s
             </ButtonPrimary>
           </div>
         </div>

@@ -123,7 +123,7 @@ const NotifyDropdown: FC<Props> = ({ className = '' }) => {
                       <CloseButton
                         as={notification.link ? Link : 'div'}
                         key={notification.id}
-                        href={notification.link || '#'}
+                        {...(notification.link ? { href: notification.link } : {})}
                         onClick={() => handleNotificationClick(notification.id)}
                         className="relative flex w-full p-4 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-hidden dark:hover:bg-gray-700/50"
                       >

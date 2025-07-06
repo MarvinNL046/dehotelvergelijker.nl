@@ -56,10 +56,10 @@ const PageEsim = () => {
               Geen gedoe meer met lokale simkaarten. Activeer je eSIM voor vertrek en land met werkend internet in 200+ landen wereldwijd via Airalo.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <ButtonPrimary size="large" href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
+              <ButtonPrimary href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
                 Bestel nu je eSIM
               </ButtonPrimary>
-              <ButtonSecondary size="large" href="#how-it-works">
+              <ButtonSecondary href="#how-it-works">
                 Hoe werkt het?
               </ButtonSecondary>
             </div>
@@ -100,7 +100,7 @@ const PageEsim = () => {
                   {destination.data} • {destination.days}
                 </p>
               </div>
-              <ButtonPrimary className="w-full" size="small" href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
+              <ButtonPrimary className="w-full" href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
                 Selecteer
               </ButtonPrimary>
             </div>
@@ -159,11 +159,11 @@ const PageEsim = () => {
                 Zoek uit meer dan 200+ landen en regio&apos;s. Vind de beste eSIM deals voor jouw bestemming.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <ButtonPrimary size="large" href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
+                <ButtonPrimary href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
                   Zoek eSIM pakketten
                 </ButtonPrimary>
                 <span className="text-neutral-600 dark:text-neutral-400">of</span>
-                <ButtonSecondary size="large" href={AIRALO_APP_LINK} target="_blank" rel="noopener noreferrer">
+                <ButtonSecondary href={AIRALO_APP_LINK} target="_blank" rel="noopener noreferrer">
                   Download de app
                 </ButtonSecondary>
               </div>
@@ -277,7 +277,7 @@ const PageEsim = () => {
           <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
             Bestel nu je eSIM en reis zonder zorgen. Direct geleverd, wereldwijde dekking, en geen verborgen kosten.
           </p>
-          <ButtonPrimary size="large" className="mt-8" href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
+          <ButtonPrimary className="mt-8" href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">
             Start nu met Airalo
           </ButtonPrimary>
         </div>

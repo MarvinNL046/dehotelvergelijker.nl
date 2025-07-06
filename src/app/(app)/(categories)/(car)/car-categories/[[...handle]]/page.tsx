@@ -53,7 +53,7 @@ const Page = async ({
     if (category.handle === 'all') {
       dynamicHeading = (
         <>
-          Alle auto's in <span className="text-primary-600">{location}</span>
+          Alle auto&apos;s in <span className="text-primary-600">{location}</span>
         </>
       )
     } else {
@@ -82,7 +82,7 @@ const Page = async ({
               </span>
               <span className="mx-5"></span>
               <HugeiconsIcon icon={Car03Icon} size={20} color="currentColor" strokeWidth={1.5} />
-              <span className="ms-2.5">{convertNumbThousand(category.count)} auto's</span>
+              <span className="ms-2.5">{convertNumbThousand(category.count)} auto&apos;s</span>
             </div>
           }
         />
