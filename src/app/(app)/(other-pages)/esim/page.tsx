@@ -156,7 +156,7 @@ const PageEsim = () => {
           <div className="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 rounded-3xl p-8 lg:p-12">
             <div className="text-center">
               <p className="text-lg text-neutral-700 dark:text-neutral-300 mb-8">
-                Zoek uit meer dan 200+ landen en regio's. Vind de beste eSIM deals voor jouw bestemming.
+                Zoek uit meer dan 200+ landen en regio&apos;s. Vind de beste eSIM deals voor jouw bestemming.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <ButtonPrimary size="large" href={AIRALO_LINK} target="_blank" rel="noopener noreferrer">

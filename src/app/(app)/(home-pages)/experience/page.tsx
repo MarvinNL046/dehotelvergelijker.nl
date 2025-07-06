@@ -21,8 +21,8 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Experiences Home',
-  description: 'Home page of the Experiences application',
+  title: 'Activiteiten - DeHotelVergelijker.nl',
+  description: 'Ontdek de beste activiteiten, tours en ervaringen wereldwijd. Boek unieke belevingen tegen de beste prijzen.',
 }
 
 async function Home() {
@@ -35,24 +35,30 @@ async function Home() {
       <BgGlassmorphism />
       <div className="relative container mb-24 flex flex-col gap-y-24 lg:mb-28 lg:gap-y-32">
         <HeroSectionWithSearchForm1
-          heading="Discover Adventures"
+          heading={
+            <>
+              Ontdek <span className="text-primary-600">onvergetelijke avonturen</span>
+            </>
+          }
           image={heroImage}
           imageAlt="hero"
           searchForm={<HeroSearchForm initTab="Experiences" />}
           description={
             <>
               <p className="max-w-xl text-base text-neutral-500 sm:text-xl dark:text-neutral-400">
-                With us, your trip is filled with amazing experiences.
+                Boek <span className="text-primary-600 font-medium">unieke activiteiten</span> en tours voor een onvergetelijke reis vol bijzondere ervaringen.
               </p>
               <ButtonPrimary href={'/experience-categories/all'} className="sm:text-base/normal">
-                Start your search
+                Start je zoekopdracht
               </ButtonPrimary>
             </>
           }
         />
 
         <div>
-          <HeadingWithSub subheading="Keep calm & travel on">Let&apos;s go on an adventure</HeadingWithSub>
+          <HeadingWithSub subheading="Van stadstours tot natuuravonturen">
+            Ga op avontuur met onze activiteiten
+          </HeadingWithSub>
           <SectionSliderNewCategories
             itemClassName="w-[17rem] lg:w-1/3 xl:w-1/4"
             categories={categories}
@@ -62,8 +68,8 @@ async function Home() {
 
         <div className="relative py-20">
           <BackgroundSection />
-          <HeadingWithSub isCenter subheading="Find the perfect experience for you.">
-            Experience listings
+          <HeadingWithSub isCenter subheading="Vind de perfecte ervaring voor jouw reis">
+            <span className="text-primary-600">Populaire activiteiten</span>
           </HeadingWithSub>
           <div className="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 md:gap-x-8 md:gap-y-12 lg:mt-10 lg:grid-cols-3 xl:grid-cols-4">
             {experienceListings.map((listing) => (
@@ -72,7 +78,7 @@ async function Home() {
           </div>
           <div className="mt-16 flex justify-center">
             <ButtonPrimary href="/experience-categories/all">
-              <span>Show all experiences</span>
+              <span>Bekijk alle activiteiten</span>
               <HugeiconsIcon
                 icon={ArrowRight02Icon}
                 size={20}
@@ -88,15 +94,15 @@ async function Home() {
 
         <div className="relative py-20">
           <BackgroundSection />
-          <HeadingWithSub isCenter subheading="Meet the best our authors.">
-            Become a host
+          <HeadingWithSub isCenter subheading="Ontmoet onze beste gidsen en hosts">
+            Word een gids
           </HeadingWithSub>
           <SectionGridAuthorBox authors={authors} />
         </div>
 
         <div>
-          <HeadingWithSub isCenter subheading={'Keep calm & travel on'}>
-            Explore nearby
+          <HeadingWithSub isCenter subheading={'Ontdek activiteiten dicht bij huis'}>
+            Verken de omgeving
           </HeadingWithSub>
           <SectionGridCategoryBox categories={categories} />
         </div>

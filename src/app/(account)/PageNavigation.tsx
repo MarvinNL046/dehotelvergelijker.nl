@@ -9,15 +9,19 @@ const navigation = [
     href: '/account',
   },
   {
-    title: 'Saved listings',
+    title: 'Favorieten',
     href: '/account-savelists',
   },
   {
-    title: 'Password',
+    title: 'Meldingen',
+    href: '/account/notifications',
+  },
+  {
+    title: 'Wachtwoord',
     href: '/account-password',
   },
   {
-    title: 'Payments & payouts',
+    title: 'Betalingen',
     href: '/account-billing',
   },
 ]

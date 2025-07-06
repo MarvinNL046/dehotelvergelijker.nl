@@ -26,8 +26,15 @@ export async function generateMetadata({ params }: { params: Promise<{ handle?: 
   return { title: name, description }
 }
 
-const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
+const Page = async ({ 
+  params,
+  searchParams 
+}: { 
+  params: Promise<{ handle?: string[] }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) => {
   const { handle } = await params
+  const search = await searchParams
 
   const category = await getCarCategoryByHandle(handle?.[0])
   const listings = await getCarListings()
@@ -37,22 +44,45 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
     return redirect('/car-categories/all')
   }
 
+  // Get location from search params
+  const location = search.location as string | undefined
+
+  // Create dynamic heading based on category and location
+  let dynamicHeading: React.ReactNode = category.name
+  if (location) {
+    if (category.handle === 'all') {
+      dynamicHeading = (
+        <>
+          Alle auto's in <span className="text-primary-600">{location}</span>
+        </>
+      )
+    } else {
+      dynamicHeading = (
+        <>
+          {category.name} in <span className="text-primary-600">{location}</span>
+        </>
+      )
+    }
+  }
+
   return (
     <div className="pb-28">
       {/* Hero section */}
       <div className="container">
         <HeroSectionWithSearchForm1
-          heading={category.name}
+          heading={dynamicHeading}
           image={category.coverImage}
           imageAlt={category.name}
           searchForm={<RentalCarSearchForm formStyle="default" />}
           description={
             <div className="flex items-center sm:text-lg">
               <HugeiconsIcon icon={MapPinpoint02Icon} size={20} color="currentColor" strokeWidth={1.5} />
-              <span className="ms-2.5">{category.region} </span>
+              <span className="ms-2.5">
+                {location ? <span className="text-primary-600 font-medium">{location}</span> : category.region}
+              </span>
               <span className="mx-5"></span>
               <HugeiconsIcon icon={Car03Icon} size={20} color="currentColor" strokeWidth={1.5} />
-              <span className="ms-2.5">{convertNumbThousand(category.count)} cars</span>
+              <span className="ms-2.5">{convertNumbThousand(category.count)} auto's</span>
             </div>
           }
         />

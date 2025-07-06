@@ -26,8 +26,15 @@ export async function generateMetadata({ params }: { params: Promise<{ handle?: 
   return { title: name, description }
 }
 
-const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
+const Page = async ({ 
+  params,
+  searchParams 
+}: { 
+  params: Promise<{ handle?: string[] }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) => {
   const { handle } = await params
+  const search = await searchParams
 
   const category = await getRealEstateCategoryByHandle(handle?.[0])
   const listings = await getRealEstateListings()
@@ -37,22 +44,45 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
     return redirect('/real-estate-categories/all')
   }
 
+  // Get location from search params
+  const location = search.location as string | undefined
+
+  // Create dynamic heading based on category and location
+  let dynamicHeading: React.ReactNode = category.name
+  if (location) {
+    if (category.handle === 'all') {
+      dynamicHeading = (
+        <>
+          Alle vakantiehuizen in <span className="text-primary-600">{location}</span>
+        </>
+      )
+    } else {
+      dynamicHeading = (
+        <>
+          {category.name} in <span className="text-primary-600">{location}</span>
+        </>
+      )
+    }
+  }
+
   return (
     <div className="pb-28">
       {/* Hero section */}
       <div className="container">
         <HeroSectionWithSearchForm1
-          heading={category.name}
+          heading={dynamicHeading}
           image={category.coverImage}
           imageAlt={category.name}
           searchForm={<RealEstateHeroSearchForm formStyle="default" />}
           description={
             <div className="flex items-center sm:text-lg">
               <HugeiconsIcon icon={MapPinpoint02Icon} size={20} color="currentColor" strokeWidth={1.5} />
-              <span className="ms-2.5">{category.region} </span>
+              <span className="ms-2.5">
+                {location ? <span className="text-primary-600 font-medium">{location}</span> : category.region}
+              </span>
               <span className="mx-5"></span>
               <HugeiconsIcon icon={House01Icon} size={20} color="currentColor" strokeWidth={1.5} />
-              <span className="ms-2.5">{convertNumbThousand(category.count)} properties</span>
+              <span className="ms-2.5">{convertNumbThousand(category.count)} vakantiehuizen</span>
             </div>
           }
         />
@@ -63,11 +93,15 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
         {/* start heading */}
         <div className="flex flex-wrap items-end justify-between gap-x-2.5 gap-y-5">
           <h2 id="heading" className="scroll-mt-20 text-lg font-semibold text-pretty sm:text-xl">
-            Over {convertNumbThousand(category.count)} properties
-            {category.handle !== 'all' ? ` in ${category.name}` : null}
+            Meer dan {convertNumbThousand(category.count)} vakantiehuizen
+            {location ? (
+              <>
+                {' '}in <span className="text-primary-600">{location}</span>
+              </>
+            ) : (category.handle !== 'all' ? ` in ${category.name}` : null)}
           </h2>
-          <Button color="white" className="ms-auto" href={'/real-estate-categories-map/' + category.handle}>
-            <span className="me-1">Show map</span>
+          <Button color="white" className="ms-auto" href={'/real-estate-categories-map/' + category.handle + (location ? `?location=${encodeURIComponent(location)}` : '')}>
+            <span className="me-1">Toon kaart</span>
             <HugeiconsIcon icon={MapsLocation01Icon} size={20} color="currentColor" strokeWidth={1.5} />
           </Button>
         </div>

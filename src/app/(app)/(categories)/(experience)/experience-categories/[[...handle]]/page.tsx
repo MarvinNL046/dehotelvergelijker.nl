@@ -28,8 +28,15 @@ export async function generateMetadata({ params }: { params: Promise<{ handle?: 
   return { title: name, description }
 }
 
-const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
+const Page = async ({ 
+  params,
+  searchParams 
+}: { 
+  params: Promise<{ handle?: string[] }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) => {
   const { handle } = await params
+  const search = await searchParams
 
   const category = await getExperienceCategoryByHandle(handle?.[0])
   const listings = await getExperienceListings()
@@ -39,22 +46,45 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
     return redirect('/experience-categories/all')
   }
 
+  // Get location from search params
+  const location = search.location as string | undefined
+
+  // Create dynamic heading based on category and location
+  let dynamicHeading: React.ReactNode = category.name
+  if (location) {
+    if (category.handle === 'all') {
+      dynamicHeading = (
+        <>
+          Alle activiteiten in <span className="text-primary-600">{location}</span>
+        </>
+      )
+    } else {
+      dynamicHeading = (
+        <>
+          {category.name} in <span className="text-primary-600">{location}</span>
+        </>
+      )
+    }
+  }
+
   return (
     <div className="pb-28">
       {/* Hero section */}
       <div className="container">
         <HeroSectionWithSearchForm1
-          heading={category.name}
+          heading={dynamicHeading}
           image={category.coverImage}
           imageAlt={category.name}
           searchForm={<ExperiencesSearchForm formStyle="default" />}
           description={
             <div className="flex items-center sm:text-lg">
               <HugeiconsIcon icon={MapPinpoint02Icon} size={20} color="currentColor" strokeWidth={1.5} />
-              <span className="ms-2.5">{category.region} </span>
+              <span className="ms-2.5">
+                {location ? <span className="text-primary-600 font-medium">{location}</span> : category.region}
+              </span>
               <span className="mx-5"></span>
               <HugeiconsIcon icon={HotAirBalloonIcon} size={20} color="currentColor" strokeWidth={1.5} />
-              <span className="ms-2.5">{convertNumbThousand(category.count)} experiences</span>
+              <span className="ms-2.5">{convertNumbThousand(category.count)} activiteiten</span>
             </div>
           }
         />
@@ -64,11 +94,15 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
         {/* start heading */}
         <div className="flex flex-wrap items-end justify-between gap-x-2.5 gap-y-5">
           <h2 id="heading" className="scroll-mt-20 text-lg font-semibold sm:text-xl">
-            Over {convertNumbThousand(category.count)} experiences
-            {category.handle !== 'all' ? ` in ${category.name}` : null}
+            Meer dan {convertNumbThousand(category.count)} activiteiten
+            {location ? (
+              <>
+                {' '}in <span className="text-primary-600">{location}</span>
+              </>
+            ) : (category.handle !== 'all' ? ` in ${category.name}` : null)}
           </h2>
-          <Button color="white" className="ms-auto" href={'/experience-categories-map/' + category.handle}>
-            <span className="me-1">Show map</span>
+          <Button color="white" className="ms-auto" href={'/experience-categories-map/' + category.handle + (location ? `?location=${encodeURIComponent(location)}` : '')}>
+            <span className="me-1">Toon kaart</span>
             <HugeiconsIcon icon={MapsLocation01Icon} size={20} color="currentColor" strokeWidth={1.5} />
           </Button>
         </div>
@@ -86,7 +120,14 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
         </div>
 
         <Divider className="my-14 lg:my-24" />
-        <Heading className="mb-12">Just a few spots left.</Heading>
+        <Heading className="mb-12">
+          Nog maar enkele plekken vrij
+          {location && (
+            <>
+              {' '}in <span className="text-primary-600">{location}</span>
+            </>
+          )}
+        </Heading>
         <SectionSliderCards listings={listings.slice(0, 8)} cardType="experience" />
       </div>
     </div>

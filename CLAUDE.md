@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-DeHotelVergelijker.nl is a hotel comparison website for the Dutch market built with Next.js 15, TypeScript, Prisma, and Tailwind CSS. The project uses the Chisfis template as a base but is being transformed into a production-ready hotel comparison platform.
+DeHotelVergelijker.nl is a Dutch hotel comparison platform built on Next.js 15. Originally based on the Chisfis template, it's being transformed into a production-ready travel comparison site featuring hotels, car rentals, activities (experiences), vacation homes (real estate), flights, and eSIM services.
 
 ## Development Commands
 
@@ -12,7 +12,7 @@ DeHotelVergelijker.nl is a hotel comparison website for the Dutch market built w
 # Install dependencies (automatically runs prisma generate)
 npm install
 
-# Run development server
+# Run development server (default port 3000)
 npm run dev
 
 # Build for production (includes prisma generate)
@@ -27,44 +27,43 @@ npm run lint
 # Database commands
 npx prisma generate    # Generate Prisma client
 npx prisma db push     # Push schema to database
-npx prisma studio      # Open Prisma Studio GUI
+npx prisma studio      # Open Prisma Studio GUI (port 5555)
 ```
 
 ## Architecture Overview
 
 ### Tech Stack
-- **Frontend**: Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS 4
-- **Backend**: Next.js API Routes, Prisma ORM
-- **Database**: PostgreSQL (or Supabase)
-- **Auth**: NextAuth.js with Google/Email providers
-- **Deployment**: Vercel
+- **Frontend**: Next.js 15.3.2 (App Router), React 19, TypeScript 5.2
+- **Styling**: Tailwind CSS 4.1.5 with custom configuration
+- **Database**: PostgreSQL with Prisma ORM 6.11.1
+- **Authentication**: NextAuth.js 4.24 with Prisma adapter
+- **Deployment**: Vercel (configured in vercel.json)
+- **UI Components**: Headless UI, Heroicons, custom components
 
-### Project Structure
+### Critical Architecture Patterns
 
-```
-src/
-├── app/                    # Next.js App Router
-│   ├── (app)/             # Main application routes
-│   │   ├── (home-pages)/  # Homepage variants
-│   │   ├── (categories)/  # Category listing pages
-│   │   ├── (listings)/    # Individual listing pages
-│   │   └── (other-pages)/ # About, contact, etc.
-│   ├── (auth)/            # Authentication pages
-│   ├── (account)/         # User account pages
-│   └── api/               # API routes
-│       ├── auth/          # NextAuth endpoints
-│       └── hotels/        # Hotel data endpoints
-├── components/            # Reusable React components
-├── services/              # Business logic layer
-│   ├── hotel-service.ts   # Hotel data operations
-│   └── travelpayouts.ts   # External API integration
-├── lib/                   # Utilities
-│   ├── prisma.ts         # Prisma client singleton
-│   └── auth.ts           # NextAuth configuration
-├── types/                 # TypeScript type definitions
-│   └── hotel.ts          # Hotel-related types
-└── data/                  # Mock data (being replaced by DB)
-```
+1. **Route Groups Structure**:
+   - `(app)` - Main application routes with ApplicationLayout
+   - `(auth)` - Authentication pages with minimal layout
+   - `(account)` - User account pages with PageNavigation
+   - Routes use [[...handle]] for dynamic category/listing slugs
+
+2. **Search Parameter Flow**:
+   - Search forms pass location, dates, guests via URL params
+   - Category pages read searchParams to display dynamic content
+   - Location keywords are highlighted with `text-primary-600` class
+
+3. **Component Organization**:
+   - Server Components by default (async functions)
+   - Client Components marked with 'use client' for interactivity
+   - Search forms, dropdowns, and modals are client components
+   - Data fetching happens in server components
+
+4. **Data Layer**:
+   - Mock data in `/src/data/*.ts` (categories, listings, authors)
+   - Services in `/src/services/` for business logic
+   - API routes handle external integrations
+   - Prisma models define production schema
 
 ### Key API Routes
 
@@ -74,44 +73,72 @@ src/
 - `/api/auth/[...nextauth]` - NextAuth endpoints
 - `GET /api/travelpayouts/test` - Test external API connection
 
-### Database Schema
+### Notification System
 
-The application uses Prisma with PostgreSQL. Key models:
-- **Hotel**: Core hotel information, amenities, location
-- **Room**: Room types and configurations
-- **Availability**: Real-time pricing and availability
-- **User**: User accounts with favorites and alerts
-- **Review**: User reviews and ratings
-- **PriceAlert**: Price drop notifications
-- **ClickTracking**: Affiliate revenue tracking
+Custom notification system with:
+- `NotificationService` singleton for state management
+- `useNotifications` hook for React components
+- Types: price_alert, new_deal, booking_reminder, system
+- Supports mark as read, delete, and bulk operations
 
-### External Integrations
+### Translation System
 
-The project is designed to integrate with:
-- **RateHawk**: Primary hotel data provider (B2B)
-- **Booking.com**: Affiliate program for commissions
-- **Google Maps**: Location search and display
-- **Email providers**: For notifications
+- Language files in `/public/locales/` (nl.ts, en.ts)
+- T utility in `/src/utils/getT.ts` for translations
+- Primary language: Dutch (nl)
+- All user-facing text should use translations
+
+### Affiliate Integration Points
+
+1. **eSIM Page** - Airalo affiliate links:
+   - Main link: `https://airalo.tpo.lv/Eonf0kHG`
+   - App link: `https://airalo.tpo.lv/SmkV9cGd`
+
+2. **Hotel Booking** - Designed for multiple providers:
+   - Booking.com, Hotels.com, Expedia, Agoda
+   - Click tracking via ClickTracking model
+   - Revenue tracking for commissions
 
 ### Environment Variables
 
-Critical environment variables:
+Required for production:
 - `DATABASE_URL` - PostgreSQL connection
-- `NEXTAUTH_SECRET` - Auth session encryption
-- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` - Maps integration
-- Hotel API keys (various providers)
+- `DIRECT_URL` - Direct database connection (Prisma)
+- `NEXTAUTH_SECRET` - Session encryption
+- `NEXTAUTH_URL` - Authentication callback URL
 
-### Current State
+Optional integrations:
+- Hotel API keys (BOOKING_API_KEY, etc.)
+- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` - Maps
+- Email service credentials (SMTP_*)
+- Analytics and monitoring
 
-The project currently uses mock data in development. In production with `DATABASE_URL` set, it attempts to fetch from the database. The transition from template to production involves:
-1. Replacing mock data with real API integrations
-2. Implementing the affiliate tracking system
-3. Adding Dutch localization throughout
-4. Optimizing for SEO and performance
+### Vercel Deployment
 
-### Important Notes
+The project uses explicit framework detection:
+```json
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next"
+}
+```
 
-- The project was migrated from a Vite React template to Next.js
-- Prisma must be generated during build for Vercel deployment
-- The template includes multiple property types (cars, flights, etc.) but focus is on hotels only
-- Dutch market focus requires specific content and SEO optimization
+Build process automatically runs `prisma generate` before Next.js build.
+
+### Current Development State
+
+1. **Mock Data Phase**: Currently using static data from `/src/data/`
+2. **Database Ready**: Prisma schema defined but not actively used
+3. **Dutch Localization**: Actively being implemented throughout
+4. **Multi-Service Platform**: Hotels primary, but includes cars, activities, real estate, flights, eSIM
+
+### Important Implementation Notes
+
+- Always check for existing components before creating new ones
+- Use primary-600 color for brand highlighting
+- Maintain Dutch language in UI, English in code/comments
+- Category pages support location-based dynamic headings
+- Search forms should pass all parameters (location, dates, guests)
+- Images use Next.js Image component with proper sizing
+- Dark mode support via Tailwind dark: prefix

@@ -30,16 +30,6 @@ export async function getNavigation(): Promise<TNavigationItem[]> {
       href: '/esim',
       name: 'eSIM',
     },
-    {
-      id: '7',
-      href: '/blog',
-      name: 'Blog',
-    },
-    {
-      id: '8',
-      href: '/contact',
-      name: 'Contact',
-    },
   ]
 }
 

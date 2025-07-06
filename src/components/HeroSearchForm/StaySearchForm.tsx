@@ -22,14 +22,46 @@ export const StaySearchForm = ({ className, formStyle = 'default' }: Props) => {
   const handleFormSubmit = (formData: FormData) => {
     const formDataEntries = Object.fromEntries(formData.entries())
     console.log('Form submitted', formDataEntries)
-    // You can also redirect or perform other actions based on the form data
-
-    // example: add location to the URL
+    
+    // Build URL with all search parameters
+    const params = new URLSearchParams()
+    
     const location = formDataEntries['location'] as string
-    let url = '/stay-categories/all'
     if (location) {
-      url = url + `?location=${encodeURIComponent(location)}`
+      params.append('location', location)
     }
+    
+    const checkIn = formDataEntries['checkIn'] as string
+    if (checkIn) {
+      params.append('checkIn', checkIn)
+    }
+    
+    const checkOut = formDataEntries['checkOut'] as string
+    if (checkOut) {
+      params.append('checkOut', checkOut)
+    }
+    
+    const adults = formDataEntries['adults'] as string
+    if (adults) {
+      params.append('adults', adults)
+    }
+    
+    const children = formDataEntries['children'] as string
+    if (children) {
+      params.append('children', children)
+    }
+    
+    const infants = formDataEntries['infants'] as string
+    if (infants) {
+      params.append('infants', infants)
+    }
+    
+    let url = '/stay-categories/all'
+    const queryString = params.toString()
+    if (queryString) {
+      url = url + '?' + queryString
+    }
+    
     router.push(url)
   }
 

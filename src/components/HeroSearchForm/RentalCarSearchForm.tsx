@@ -26,14 +26,36 @@ export const RentalCarSearchForm: FC<Props> = ({ className, formStyle = 'default
   const handleFormSubmit = (formData: FormData) => {
     const formDataEntries = Object.fromEntries(formData.entries())
     console.log('Form submitted', formDataEntries)
-    // You can also redirect or perform other actions based on the form data
-
-    // example: add location to the URL
-    const location = formDataEntries['pickup-location'] as string
-    let url = '/car-categories/all'
-    if (location) {
-      url = url + `?location=${encodeURIComponent(location)}`
+    
+    // Build URL with all search parameters
+    const params = new URLSearchParams()
+    
+    const pickupLocation = formDataEntries['pickup-location'] as string
+    if (pickupLocation) {
+      params.append('location', pickupLocation)
     }
+    
+    const dropoffLocation = formDataEntries['dropoff-location'] as string
+    if (dropoffLocation && dropOffLocationType === 'different') {
+      params.append('dropoffLocation', dropoffLocation)
+    }
+    
+    const checkIn = formDataEntries['checkIn'] as string
+    if (checkIn) {
+      params.append('pickupDate', checkIn)
+    }
+    
+    const checkOut = formDataEntries['checkOut'] as string
+    if (checkOut) {
+      params.append('dropoffDate', checkOut)
+    }
+    
+    let url = '/car-categories/all'
+    const queryString = params.toString()
+    if (queryString) {
+      url = url + '?' + queryString
+    }
+    
     router.push(url)
   }
 
