@@ -36,7 +36,7 @@
     "eslint-config-next": "15.3.2",
     "framer-motion": "^12.10.4",
     "lodash": "^4.17.21",
-    "next": "15.3.2",
+    "next": "^15.5.12",
     "next-auth": "^4.24.11",
     "prisma": "^6.11.1",
     "rc-slider": "^11.1.8",
