@@ -22,6 +22,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="nl" className={poppins.className}>
+      <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LR18BBPHTN" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-LR18BBPHTN');
+            `,
+          }}
+        />
+      </head>
       <body className="bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
         <ThemeProvider>
           <div>
